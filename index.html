@@ -1,0 +1,36 @@
+<div id="app">
+  <label for="yes">Yes</label>
+  <input type="radio" name="test" id="yes" data-radio="logic|yes" />
+  <label for="no">No</label>
+  <input type="radio" name="test" id="no" data-radio="logic|no" />
+  <div data-container="logic">
+    <div data-id="yes" class="hidden">
+      <h2>It's a yes</h2>
+    </div>
+    <div data-id="no" class="hidden">
+      <h2>It's a no</h2>
+      <label for="yeah">Yes</label>
+      <input
+        type="radio"
+        name="nestedTest"
+        id="yeah"
+        data-radio="nestedLogic|yes"
+      />
+      <label for="nah">No</label>
+      <input
+        type="radio"
+        name="nestedTest"
+        id="nah"
+        data-radio="nestedLogic|no"
+      />
+      <div data-container="nestedLogic">
+        <div data-id="yes" class="hidden">
+          <h2>It's a yes</h2>
+        </div>
+        <div data-id="no" class="hidden">
+          <h2>It's a no</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
