@@ -1,36 +1,57 @@
 <div id="app">
-  <label for="yes">Yes</label>
-  <input type="radio" name="test" id="yes" data-radio="logic|yes" />
-  <label for="no">No</label>
-  <input type="radio" name="test" id="no" data-radio="logic|no" />
-  <div data-container="logic">
-    <div data-id="yes" class="hidden">
-      <h2>It's a yes</h2>
-    </div>
-    <div data-id="no" class="hidden">
-      <h2>It's a no</h2>
-      <label for="yeah">Yes</label>
-      <input
-        type="radio"
-        name="nestedTest"
-        id="yeah"
-        data-radio="nestedLogic|yes"
-      />
-      <label for="nah">No</label>
-      <input
-        type="radio"
-        name="nestedTest"
-        id="nah"
-        data-radio="nestedLogic|no"
-      />
-      <div data-container="nestedLogic">
-        <div data-id="yes" class="hidden">
-          <h2>It's a yes</h2>
-        </div>
-        <div data-id="no" class="hidden">
-          <h2>It's a no</h2>
+  <form onsubmit="handleSubmit(event)">
+    <label for="yes">Yes</label>
+    <input
+      type="radio"
+      name="test"
+      id="yes"
+      value="yes"
+      data-radio="logic|yes"
+    />
+    <label for="no">No</label>
+    <input type="radio" name="test" id="no" value="no" data-radio="logic|no" />
+    <div data-container="logic">
+      <div data-id="logic|yes" class="hidden">
+        <h2>It's a yes</h2>
+      </div>
+      <div data-id="logic|no" class="hidden">
+        <h2>It's a no</h2>
+        <label for="yeah">Yes</label>
+        <input
+          type="radio"
+          name="nestedTest"
+          id="yeah"
+          value="yeah"
+          data-radio="nestedLogic|yes"
+        />
+        <label for="nah">No</label>
+        <input
+          type="radio"
+          name="nestedTest"
+          value="nah"
+          id="nah"
+          data-radio="nestedLogic|no"
+        />
+        <div data-container="nestedLogic">
+          <div data-id="nestedLogic|yes" class="hidden">
+            <h2>It's a yes</h2>
+          </div>
+          <div data-id="no" class="hidden">
+            <h2>It's a no</h2>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+    <button type="submit">Submit</button>
+  </form>
 </div>
+
+<script>
+  function handleSubmit(e) {
+    e.preventDefault();
+    let formData = new FormData(e.target);
+    for (const pair of formData.entries()) {
+      console.log(`${pair[0]}, ${pair[1]}`);
+    }
+  }
+</script>

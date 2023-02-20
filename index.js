@@ -7,14 +7,23 @@ let logic = sessionStorage.myMap
   : new Map();
 
 const setShow = (container, id) => {
-  let parent = document.querySelector(`[data-container="${container}"]`);
-  if (parent) {
-    let toShow = parent.querySelector(`div[data-id="${id}"]`);
-    let toHide = parent.querySelectorAll(`div[data-id]:not([data-id="${id}"])`);
-    for (let i = 0; i < toHide.length; i++) {
-      toHide[i].classList.add('hidden');
+  let toShow = document.querySelector(`div[data-id="${container}|${id}"]`);
+  let toHide = document.querySelectorAll(
+    `div[data-id^=${container}]:not([data-id="${container}|${id}"])`
+  );
+  for (let i = 0; i < toHide.length; i++) {
+    toHide[i].classList.add('hidden');
+    let children = toHide[i].querySelectorAll(`[data-radio]`);
+    for (let i = 0; i < children.length; i++) {
+      children[i].setAttribute('disabled', 'disabled');
     }
-    toShow && toShow.classList.remove('hidden');
+  }
+  if (toShow) {
+    toShow.classList.remove('hidden');
+    let children = toShow.querySelectorAll(`[data-radio]`);
+    for (let i = 0; i < children.length; i++) {
+      children[i].removeAttribute('disabled');
+    }
   }
 };
 
